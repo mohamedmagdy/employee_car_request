@@ -7,6 +7,14 @@
         <field name="model">car.request</field>
         <field name="arch" type="xml">
           <form name="Car Request Form">
+              <header>
+                  <button name="confirm_request" string="Confirm" class="oe_highlight" states="draft" type="object"/>
+                  <button name="validate_request" string="Validate" class="oe_highlight" states="confirm" type="object" groups="hr.group_hr_user"/>
+                  <button name="approve_request" string="Approve" class="oe_highlight" states="validate" type="object" groups="hr.group_hr_manager"/>
+                  <button name="refuse_request" string="Refuse" states="confirm,validate" type="object" groups="hr.group_hr_user,hr.group_hr_manager"/>
+
+                  <field name="state" widget="statusbar" statusbar_visible="draft,confirm,validate"/>
+              </header>
             <sheet>
               <div class="oe_title">
                   <label for="name" class="oe_edit_only"/>
