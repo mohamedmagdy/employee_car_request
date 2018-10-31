@@ -5,6 +5,7 @@ from odoo import models, fields, api
 
 class CarRequest(models.Model):
     _name = "car.request" # Table in DB => car_request
+    _inherit = ['mail.thread']
     _description = "Car Request"
 
     name = fields.Char(string="Request", required=True, )
