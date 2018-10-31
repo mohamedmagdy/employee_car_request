@@ -1,2 +1,2 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_employee_car_request_employee_car_request,employee_car_request.employee_car_request,model_employee_car_request_employee_car_request,,1,0,0,0
+access_employee_car_request,employee_car_request.employee_car_request,model_car_request,,1,1,1,1
