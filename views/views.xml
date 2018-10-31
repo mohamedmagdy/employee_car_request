@@ -1,60 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <data>
-    <!-- explicit list view definition -->
-    <!--
-    <record model="ir.ui.view" id="employee_car_request.list">
-      <field name="name">employee_car_request list</field>
-      <field name="model">employee_car_request.employee_car_request</field>
-      <field name="arch" type="xml">
-        <tree>
-          <field name="name"/>
-          <field name="value"/>
-          <field name="value2"/>
-        </tree>
-      </field>
-    </record>
-    -->
+    <data>
 
-    <!-- actions opening views on models -->
-    <!--
-    <record model="ir.actions.act_window" id="employee_car_request.action_window">
-      <field name="name">employee_car_request window</field>
-      <field name="res_model">employee_car_request.employee_car_request</field>
-      <field name="view_mode">tree,form</field>
-    </record>
-    -->
+      <record id="view_car_request_form" model="ir.ui.view">
+        <field name="name">view.car.request.form</field>
+        <field name="model">car.request</field>
+        <field name="arch" type="xml">
+          <form name="Car Request Form">
+            <sheet>
+              <div class="oe_title">
+                  <label for="name" class="oe_edit_only"/>
+                  <h1>
+                      <field name="name" placeholder="Request"/>
+                  </h1>
+              </div>
+              <group>
+                  <group>
+                      <field name="date_from"/>
+                      <field name="date_to"/>
+                  </group>
+                  <group>
+                      <field name="employee_id"/>
+                      <field name="car_id"/>
+                  </group>
+              </group>
+            </sheet>
+          </form>
 
-    <!-- server action to the one above -->
-    <!--
-    <record model="ir.actions.server" id="employee_car_request.action_server">
-      <field name="name">employee_car_request server</field>
-      <field name="model_id" ref="model_employee_car_request_employee_car_request"/>
-      <field name="state">code</field>
-      <field name="code">
-        action = {
-          "type": "ir.actions.act_window",
-          "view_mode": "tree,form",
-          "res_model": self._name,
-        }
-      </field>
-    </record>
-    -->
+        </field>
+      </record>
 
-    <!-- Top menu item -->
-    <!--
-    <menuitem name="employee_car_request" id="employee_car_request.menu_root"/>
-    -->
-    <!-- menu categories -->
-    <!--
-    <menuitem name="Menu 1" id="employee_car_request.menu_1" parent="employee_car_request.menu_root"/>
-    <menuitem name="Menu 2" id="employee_car_request.menu_2" parent="employee_car_request.menu_root"/>
-    -->
-    <!-- actions -->
-    <!--
-    <menuitem name="List" id="employee_car_request.menu_1_list" parent="employee_car_request.menu_1"
-              action="employee_car_request.action_window"/>
-    <menuitem name="Server to list" id="employee_car_request" parent="employee_car_request.menu_2"
-              action="employee_car_request.action_server"/>
-    -->
-  </data>
+        <record id="view_car_request_tree" model="ir.ui.view">
+            <field name="name">view.car.request.tree</field>
+            <field name="model">car.request</field>
+            <field name="arch" type="xml">
+                <tree string="Car Request Tree">
+                    <field name="name"/>
+                    <field name="employee_id"/>
+                    <field name="car_id"/>
+                    <field name="date_from"/>
+                    <field name="date_to"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_car_request_views" model="ir.actions.act_window">
+            <field name="name">Car Request</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">car.request</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Car Request
+              </p><p>
+                Click to add a car request
+              </p>
+            </field>
+        </record>
+
+        <!-- This Menu Item will appear in the Upper bar, That's why It needs NO parent or action -->
+        <menuitem id="menu_car_request_root" name="Car Request" sequence="10"/>
+        <!-- This Menu Item Must have a parent -->
+        <menuitem id="menu_car_request_categ" name="Car Request" parent="menu_car_request_root" sequence="1"/>
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="menu_car_request" name="Car Request" parent="menu_car_request_categ" action="action_car_request_views" sequence="1"/>
+
+
+    </data>
 </odoo>
