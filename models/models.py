@@ -18,6 +18,13 @@ class CarRequest(models.Model):
                                                          ('approved', 'Approved'), ], default="draft", track_visibility='onchange', )
     email = fields.Char(string="Email", required=False, )
 
+    # _sql_constraints is working on DB level and you can find it in the table:
+    # \d TABLE_NAME
+    # SQL Constraints can use to rules: unique & check
+    _sql_constraints = [
+        ('unique_email', 'unique(email)', 'The email should be unique!'),
+    ]
+
     @api.multi
     def confirm_request(self):
         self.state = 'confirm'
