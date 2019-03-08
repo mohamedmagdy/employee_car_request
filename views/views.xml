@@ -26,6 +26,7 @@
                   <group>
                       <field name="date_from"/>
                       <field name="date_to"/>
+                      <field name="email" widget="email"/>
                   </group>
                   <group>
                       <field name="employee_id"/>

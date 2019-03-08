@@ -16,6 +16,7 @@ class CarRequest(models.Model):
     state = fields.Selection(string="Status", selection=[('draft', 'Draft'), ('confirm', 'Confirm'),
                                                          ('validate', 'Validated'), ('refuse', 'Refuse'),
                                                          ('approved', 'Approved'), ], default="draft", track_visibility='onchange', )
+    email = fields.Char(string="Email", required=False, )
 
     @api.multi
     def confirm_request(self):
