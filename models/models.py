@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from odoo import models, fields, api
+from odoo.exceptions import ValidationError
 
 
 class CarRequest(models.Model):
@@ -24,6 +25,18 @@ class CarRequest(models.Model):
     _sql_constraints = [
         ('unique_email', 'unique(email)', 'The email should be unique!'),
     ]
+
+    @api.constrains('email')
+    def _check_email(self):
+        """
+        Constrains will check / triggered for the listed fields only in creation and updating.
+        @api.constraints will work on the application level
+        :return:
+        """
+        if self.email.endswith('gmail.com'):
+            raise ValidationError("Gmail is not accepted!")
+        if self.email.endswith('yahoo.com'):
+            raise ValidationError("Yahoo is not accepted!")
 
     @api.multi
     def confirm_request(self):
