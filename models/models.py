@@ -18,6 +18,36 @@ class CarRequest(models.Model):
                                                          ('validate', 'Validated'), ('refuse', 'Refuse'),
                                                          ('approved', 'Approved'), ], default="draft", track_visibility='onchange', )
     email = fields.Char(string="Email", required=False, )
+    website = fields.Char(string="Website", required=False, )
+
+    @api.onchange('email')
+    def _onchange_email(self):
+        """
+        Email: YOURNAME@YOURCOMPANY.COM
+        Website: http://www.YOURCOMPANY.COM
+        :return:
+        """
+        # return {
+        #     'domain': {'other_id': [('partner_id', '=', partner_id)]},
+        #     'warning': {'title': "Warning", 'message': "What is this?"},
+        # }
+        result = {}
+        if self.email:
+            # self.website = 'http://www.%s' % (self.email.split('@')[1])
+            result.update({
+                'value': {
+                    'website': 'http://www.%s' % (self.email.split('@')[1])
+                },
+                'warning': {
+                    'title': 'Congrates!',
+                    'message': 'You have added an email!',
+                },
+                'domain': {
+                    'employee_id': [('id', '!=', 20)],
+                }
+            })
+
+        return result
 
     # _sql_constraints is working on DB level and you can find it in the table:
     # \d TABLE_NAME

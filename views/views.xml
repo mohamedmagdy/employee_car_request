@@ -31,6 +31,7 @@
                   <group>
                       <field name="employee_id"/>
                       <field name="car_id"/>
+                      <field name="website" widget="url"/>
                   </group>
               </group>
             </sheet>
