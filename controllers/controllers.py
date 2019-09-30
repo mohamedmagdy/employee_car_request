@@ -19,12 +19,11 @@ class EmployeeCarRequest(http.Controller):
     # def index(self, **kw):
     #     return "Hello, Odoo Live Session"
 
-#     @http.route('/employee_car_request/employee_car_request/objects/', auth='public')
-#     def list(self, **kw):
-#         return http.request.render('employee_car_request.listing', {
-#             'root': '/employee_car_request/employee_car_request',
-#             'objects': http.request.env['employee_car_request.employee_car_request'].search([]),
-#         })
+    @http.route('/car_request/list/', auth='user', website=True, methods=['GET'], type='http')
+    def list(self, **kw):
+        return http.request.render('employee_car_request.car_request', {
+            'objects': http.request.env['car.request'].search([('employee_id.user_id', '=', http.request.uid)]),
+        })
 
 #     @http.route('/employee_car_request/employee_car_request/objects/<model("employee_car_request.employee_car_request"):obj>/', auth='public')
 #     def object(self, obj, **kw):

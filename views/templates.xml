@@ -1,22 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-        <!-- <template id="listing"> -->
-        <!--   <ul> -->
-        <!--     <li t-foreach="objects" t-as="object"> -->
-        <!--       <a t-attf-href="#{ root }/objects/#{ object.id }"> -->
-        <!--         <t t-esc="object.display_name"/> -->
-        <!--       </a> -->
-        <!--     </li> -->
-        <!--   </ul> -->
-        <!-- </template> -->
-        <!-- <template id="object"> -->
-        <!--   <h1><t t-esc="object.display_name"/></h1> -->
-        <!--   <dl> -->
-        <!--     <t t-foreach="object._fields" t-as="field"> -->
-        <!--       <dt><t t-esc="field"/></dt> -->
-        <!--       <dd><t t-esc="object[field]"/></dd> -->
-        <!--     </t> -->
-        <!--   </dl> -->
-        <!-- </template> -->
+
+        <template id="car_request" name="Car Requests">
+            <t t-call="website.layout">
+                <div class="oe_structure"/>
+                <div class="container">
+                    <h1>Hello, World!</h1>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Car Request Name</th>
+                                <th>Starting Date</th>
+                                <th>State</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="objects" t-as="obj">
+                                <tr>
+                                    <td>
+                                        <t t-esc="obj.name"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="obj.date_from"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="obj.state"/>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                    <div class="oe_structure"/>
+                </div>
+            </t>
+        </template>
+
     </data>
 </odoo>
