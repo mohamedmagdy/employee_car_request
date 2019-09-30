@@ -19,7 +19,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'hr', 'fleet', ],
+    'depends': ['base', 'hr', 'fleet', 'website', ],
 
     # always loaded
     'data': [
